@@ -1,9 +1,18 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const CreateTask = () => {
+    const navigate = useNavigate();
 
-return (
-  <div>Hi I am Create Task Component</div>
-)
+    const goTaskNotification = () => {
+        navigate('/task-notifications', { state: { initialMessage: 'Initial Message' } });
+    };
 
-}
+    return (
+        <div>
+            <button onClick={goTaskNotification}>Go to Task Notification</button>
+        </div>
+    );
+};
 
-export default CreateTask();
+export default CreateTask;
