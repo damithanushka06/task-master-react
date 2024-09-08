@@ -1,16 +1,23 @@
-import {useState} from "react";
-import Child from "./Child";
+import {useEffect, useState} from "react";
 
 const Parent = () =>{
 
-  const [message, setMessage] = useState('');
+  const [data, setData] = useState('');
+
+  useEffect(()=>{
+    fetch('https://api.github.com/users').then(response => response.json()).then(data=>{
+        setData(data);
+    }).catch(error =>{
+        console.log(error);
+    })
+
+  })
 
   return (
       <div>
-        <p>{message}</p><br></br>
-        <Child message={message} onMessageChange={setMessage}/>
+        <h1>Data</h1>
+        <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
-
   )
 }
 export default Parent;
